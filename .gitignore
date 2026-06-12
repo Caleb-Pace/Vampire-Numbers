@@ -1,3 +1,6 @@
+# Visual Studio IDEs
+.vs*/
+
 # Prerequisites
 *.d
 
