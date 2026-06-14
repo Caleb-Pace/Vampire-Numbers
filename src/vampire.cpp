@@ -1,6 +1,7 @@
 #include <iostream> // TODO: Remove, for debugging
 #include <cmath>
 #include <vector>
+#include <array>
 
 namespace VampireNums {
 
@@ -41,6 +42,17 @@ namespace VampireNums {
         return digits;
     }
 
+    std::array<unsigned char, 10> get_digit_counts(long number) {
+        std::array<unsigned char, 10> counts = {0};
+
+        while (number > 0) {
+            counts[number % 10]++;
+            number /= 10;
+        }
+
+        return counts;
+    }
+
     // Cannot be negative
     // Even digits
     // Has fangs
@@ -54,10 +66,6 @@ namespace VampireNums {
         if (is_odd(count_digits(number)))
             return false;  // Cannot have odd number of digits
         
-        std::cout << "123 has " << count_digits(123) << " digits" << std::endl;
-        std::cout << "0 has " << count_digits(0) << " digits" << std::endl;
-        std::cout << "-43 has " << count_digits(-43) << " digits" << std::endl;
-
         auto digits = get_digits(number);
         
         // TODO: Remove, for debugging
