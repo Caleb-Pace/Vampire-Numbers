@@ -5,7 +5,12 @@
 namespace VampireNums {
 
     int count_digits(long number) {
-        return log10(number) + 1;
+        if (number == 0)
+            return 1;  // Early exit: log_10(0) is undefined
+        if (number < 0)
+            number = std::labs(number);
+        
+        return floor(log10(number)) + 1;
     }
 
     bool is_odd(int num) {
@@ -49,6 +54,10 @@ namespace VampireNums {
         if (is_odd(count_digits(number)))
             return false;  // Cannot have odd number of digits
         
+        std::cout << "123 has " << count_digits(123) << " digits" << std::endl;
+        std::cout << "0 has " << count_digits(0) << " digits" << std::endl;
+        std::cout << "-43 has " << count_digits(-43) << " digits" << std::endl;
+
         auto digits = get_digits(number);
         
         // TODO: Remove, for debugging
