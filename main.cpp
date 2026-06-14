@@ -3,9 +3,10 @@
 
 int main() {
     long vampire = 1260;
+    bool is_vampire_number = VampireNums::is_vampire_number(vampire);
 
     std::cout << vampire << " is";
-    std::cout << (VampireNums::is_vampire_number(vampire) ? "" : " not");
+    std::cout << (is_vampire_number ? "" : " not");
     std::cout << " a vampire number" << std::endl;
 
     return 0;
