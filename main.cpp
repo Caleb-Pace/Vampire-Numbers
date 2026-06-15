@@ -3,7 +3,7 @@
 
 int main() {
     unsigned long vampire = 1260;
-    bool is_vampire_number = VampireNums::is_vampire_number(vampire);
+    bool is_vampire_number = vampire_nums::IsVampireNumber(vampire);
 
     std::cout << vampire << " is";
     std::cout << (is_vampire_number ? "" : " not");

@@ -3,21 +3,20 @@
 #include <vector>
 #include <array>
 
-namespace VampireNums {
+namespace vampire_nums {
 
-    unsigned int count_digits(unsigned long number) {
+    unsigned int CountDigits(unsigned long number) {
         if (number == 0)
             return 1;  // Early exit: log_10(0) is undefined
         
         return floor(log10(number)) + 1;
     }
 
-    bool is_odd(unsigned int num) {
+    bool IsOdd(unsigned int num) {
         return num & 1;
     }
     
-    // Number should not be 0
-    std::vector<char> get_digits(unsigned long number) {
+    std::vector<char> GetDigits(unsigned long number) {
         std::vector<char> digits;
 
         while (number > 0) {
@@ -28,9 +27,8 @@ namespace VampireNums {
         return digits;
     }
 
-    // Number should not be 0
-    char* get_digits2(unsigned long number) {
-        int i = count_digits(number);
+    char* GetDigits2(unsigned long number) {
+        int i = CountDigits(number);
         char* digits = new char[i];
 
         do {
@@ -42,8 +40,7 @@ namespace VampireNums {
         return digits;
     }
 
-    // Number should not be 0
-    std::array<unsigned char, 10> get_digit_counts(unsigned long number) {
+    std::array<unsigned char, 10> GetDigitCounts(unsigned long number) {
         std::array<unsigned char, 10> counts = {0};
 
         while (number > 0) {
@@ -61,21 +58,21 @@ namespace VampireNums {
     //   Fangs don't both end in zero
     //   Equal length fangs
     //   Digits in fangs match digits in number
-    bool is_vampire_number(unsigned long number) {
-        if (is_odd(count_digits(number)))
+    bool IsVampireNumber(unsigned long number) {
+        if (IsOdd(CountDigits(number)))
             return false;  // Cannot have odd number of digits
         
-        auto digits = get_digits(number);
+        auto digits = GetDigits(number);
         
         // TODO: Remove, for debugging
         for (int d : digits)
             std::cout << ' ' << d;
         std::cout << std::endl;
 
-        char* digits2 = get_digits2(number);
+        char* digits2 = GetDigits2(number);
 
         // TODO: Remove, for debugging
-        int digit_count = count_digits(number);
+        int digit_count = CountDigits(number);
         for (int i = 0; i < digit_count; i++)
             std::cout << ' ' << static_cast<int>(digits2[i]);
         std::cout << std::endl;
