@@ -2,7 +2,7 @@
 #include "vampire_nums/vampire.hpp"
 
 int main() {
-    long vampire = 1260;
+    unsigned long vampire = 1260;
     bool is_vampire_number = VampireNums::is_vampire_number(vampire);
 
     std::cout << vampire << " is";

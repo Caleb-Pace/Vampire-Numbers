@@ -5,20 +5,19 @@
 
 namespace VampireNums {
 
-    int count_digits(long number) {
+    unsigned int count_digits(unsigned long number) {
         if (number == 0)
             return 1;  // Early exit: log_10(0) is undefined
-        if (number < 0)
-            number = std::labs(number);
         
         return floor(log10(number)) + 1;
     }
 
-    bool is_odd(int num) {
+    bool is_odd(unsigned int num) {
         return num & 1;
     }
-
-    std::vector<char> get_digits(long number) {
+    
+    // Number should not be 0
+    std::vector<char> get_digits(unsigned long number) {
         std::vector<char> digits;
 
         while (number > 0) {
@@ -29,7 +28,8 @@ namespace VampireNums {
         return digits;
     }
 
-    char* get_digits2(long number) {
+    // Number should not be 0
+    char* get_digits2(unsigned long number) {
         int i = count_digits(number);
         char* digits = new char[i];
 
@@ -42,7 +42,8 @@ namespace VampireNums {
         return digits;
     }
 
-    std::array<unsigned char, 10> get_digit_counts(long number) {
+    // Number should not be 0
+    std::array<unsigned char, 10> get_digit_counts(unsigned long number) {
         std::array<unsigned char, 10> counts = {0};
 
         while (number > 0) {
@@ -60,16 +61,13 @@ namespace VampireNums {
     //   Fangs don't both end in zero
     //   Equal length fangs
     //   Digits in fangs match digits in number
-    bool is_vampire_number(long number) {
-        if (number < 0)
-            return false;  // Cannot be negative
+    bool is_vampire_number(unsigned long number) {
         if (is_odd(count_digits(number)))
             return false;  // Cannot have odd number of digits
         
         auto digits = get_digits(number);
         
         // TODO: Remove, for debugging
-        std::cout << std::endl;
         for (int d : digits)
             std::cout << ' ' << d;
         std::cout << std::endl;
